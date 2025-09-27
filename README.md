@@ -3,7 +3,7 @@ webscraper for my [school's website](https://zseis.zgora.pl)
 
 ### Usage:
 ```shell
-git clone git@github.com:FrankomDev/elektron-scraper.git
+git clone https://github.com/FrankomDev/elektron-scraper.git
 cd elektron-scraper
 ./configure.sh
 vim env.py
