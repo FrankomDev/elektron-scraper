@@ -1,0 +1,7 @@
+/env.py
+/img/*
+/temp/
+/pyproject.toml
+/.venv/
+/.idea/
+/__pycache__/
