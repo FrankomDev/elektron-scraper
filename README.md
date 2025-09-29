@@ -10,4 +10,4 @@ vim env.py
 ./scraper.py -h
 ```
 <br>
-Edit ``last_id`` if needed
+Edit last_id if needed
