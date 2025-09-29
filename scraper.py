@@ -68,20 +68,25 @@ def publish_posts(i):
                 for image in all_img:
                     image['src'] = "https://zseis.zgora.pl/"+str(image['src'])
             content = md(str(soup.find('div', class_="news_content_text")))
-            date = str(parser.parse(str(soup.find('span', class_="news_modtext").text), fuzzy=True)).replace(" ","T") + ".0Z"
-            img = soup.find('div', class_="news_image").find('img').get('src')
-            img_id = 0
-            if img == "gfx/logo_zseis.gif":
-                img_id = 230
-            else:
-                img_r = requests.get("https://zseis.zgora.pl/" + img)
-                img_r.raise_for_status()
-                with open("./img/"+str(i)+".jpg", "wb") as f:
-                    f.write(img_r.content)
-                img_id = api_send_image(i)
+            try:
+                date = str(parser.parse(str(soup.find('span', class_="news_modtext").text), fuzzy=True)).replace(" ","T") + ".0Z"
+                img = soup.find('div', class_="news_image").find('img').get('src')
+                img_id = 0
+                if img == "gfx/logo_zseis.gif":
+                    img_id = 230
+                else:
+                    img_r = requests.get("https://zseis.zgora.pl/" + img)
+                    img_r.raise_for_status()
+                    with open("./img/"+str(i)+".jpg", "wb") as f:
+                        f.write(img_r.content)
+                    img_id = api_send_image(i)
 
-            if api_send_post(title, img_id, date, content):
-                print("Done, ID: "+str(i))
+                if api_send_post(title, img_id, date, content):
+                    print("Done, ID: "+str(i))
+            except Exception:
+                #this is when date is null
+                pass
+            
     except Exception as e:
         print("Error! NewsID: "+str(i))
         print(e)

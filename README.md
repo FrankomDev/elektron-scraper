@@ -9,7 +9,5 @@ cd elektron-scraper
 vim env.py
 ./scraper.py -h
 ```
-
-todo:
-- verify if it works well
-- optimize
+<br>
+Edit ``last_id`` if needed
